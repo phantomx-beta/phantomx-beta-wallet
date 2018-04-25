@@ -64,6 +64,7 @@
 #include <QScrollArea>
 #include <QScroller>
 #include <QTextDocument>
+#include <QFontDatabase>
 
 #include <iostream>
 
@@ -101,6 +102,9 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     setStyleSheet("#phantomx { background-color: #f9f9f9);  }"
     "QMenu          { background: rgb(30,32,36); color: rgb(222,222,222); }"
     "QMenu::item:selected { background-color: rgb(48,140,198); }");
+
+    QFontDatabase::addApplicationFont(":/fonts/Ubuntu-L.ttf");
+    qApp->setFont(QFont("Ubuntu", 11, QFont::Normal, false));
 
 
     // Accept D&D of URIs

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <QFontDatabase>
 
 #include <stdint.h>
 
