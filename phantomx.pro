@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = phantomx-qt
-VERSION = 1.3.1
+VERSION = 1.3.1.0
 INCLUDEPATH += src src/json src/qt src/qt/plugins/mrichtexteditor
 #INCLUDEPATH += /home/ale/deps
 DEFINES += ENABLE_WALLET
