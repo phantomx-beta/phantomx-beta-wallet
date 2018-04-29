@@ -1,5 +1,5 @@
 
-# PhantomX - PNX
+# PhantomX - PNX - V 1.3.1
 
 PhantomX is a secure project aims to integrate cryptocurrencies in a real environment.
 
@@ -48,8 +48,8 @@ sudo chmod 777 /wallets
 
 Downloading source code
 ```sh
-git clone https://github.com/phantomxdev/phantomx.git phantomx
-cd phantomx
+git clone https://github.com/PhantomxTeam/phantomx-beta-wallet.git
+cd phantomx-beta-wallet
 ```
 
 Changing permission and compiling LevelDB
@@ -81,14 +81,14 @@ make -f makefile.unix "USE_UPNP=-" # without support to UPNP
 
 ### Technical guides for more detail
 
- **Masternode on Windows:** https://phantomx.co/guide/how-to-create-masternode-windows<br>
- **Masternode on Linux:** https://phantomx.co/guide/how-to-create-masternode-linux<br>
- **Updating blockchain:** https://phantomx.co/guide/how-to-update-blockchain
+ **Masternode on Windows:** https://phantomx.org/guide/how-to-create-masternode-windows<br>
+ **Masternode on Linux:** https://phantomx.org/guide/how-to-create-masternode-linux<br>
+ **Updating blockchain:** https://phantomx.org/guide/how-to-update-blockchain
 
 
 
 ### Contacts
- **Website:** https://www.phantomx.co<br>
+ **Website:** https://www.phantomx.org<br>
  **Telegram:** https://t.me/joinchat/GuzdQUN9fdpX3fSJ4bqWTQ<br>
  **Discord:** https://discord.gg/JU7jwZX<br>
  **Twitter:** https://twitter.com/PhantomX_Coin<br>
