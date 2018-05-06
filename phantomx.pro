@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = phantomx-qt
-VERSION = 1.3.1.0
+VERSION = 1.3.0.1
 INCLUDEPATH += src src/json src/qt src/qt/plugins/mrichtexteditor
 #INCLUDEPATH += /home/ale/deps
 DEFINES += ENABLE_WALLET
@@ -311,6 +311,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/messagemodel.h \
     src/qt/sendmessagesdialog.h \
     src/qt/sendmessagesentry.h \
+    src/qt/extendedoptionsmenu.h \
     src/qt/plugins/mrichtexteditor/mrichtextedit.h \
     src/qt/qvalidatedtextedit.h \
 	src/bloom.h \
@@ -326,7 +327,8 @@ HEADERS += src/qt/bitcoingui.h \
     src/sph_shavite.h \
     src/sph_simd.h \
     src/sph_types.h \
-	src/txdb-leveldb.h
+	src/txdb-leveldb.h \
+    extendedoptionsmenu.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -370,6 +372,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiondescdialog.cpp \
     src/qt/bitcoinstrings.cpp \
     src/qt/bitcoinamountfield.cpp \
+    src/qt/extendedoptionsmenu.cpp \
     src/wallet.cpp \
     src/keystore.cpp \
     src/qt/transactionfilterproxy.cpp \
@@ -435,7 +438,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
 
 RESOURCES += \
     src/qt/bitcoin.qrc \
-    ubuntufont.qrc
+    ubuntufont.qrc \
+    src/qt/res/resupdated.qrc
 
 FORMS += \
     src/qt/forms/coincontroldialog.ui \
@@ -457,7 +461,8 @@ FORMS += \
     src/qt/forms/messagepage.ui \
     src/qt/forms/sendmessagesentry.ui \
     src/qt/forms/sendmessagesdialog.ui \
-    src/qt/plugins/mrichtexteditor/mrichtextedit.ui
+    src/qt/plugins/mrichtexteditor/mrichtextedit.ui \
+    src/qt/forms/extendedoptionsmenu.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h

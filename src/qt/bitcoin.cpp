@@ -16,6 +16,7 @@
 #include "wallet.h"
 #include "ui_interface.h"
 #include "paymentserver.h"
+#include "extendedoptionsmenu.h"
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
 #endif
