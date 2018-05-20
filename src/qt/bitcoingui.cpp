@@ -314,7 +314,7 @@ void BitcoinGUI::createActions()
     extendedOptionsMenuAction = new QAction(QIcon(":/icons2/icons2/advanceoptions.png"), tr("&Advanced Options"), this);
     extendedOptionsMenuAction->setToolTip(tr("Configure advanced options."));
     extendedOptionsMenuAction->setCheckable(true);
-    extendedOptionsMenuAction->setEnabled(false);
+    //extendedOptionsMenuAction->setEnabled(false);
     tabGroup->addAction(extendedOptionsMenuAction);
 
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -472,7 +472,7 @@ void BitcoinGUI::setClientModel(ClientModel *clientModel)
 #endif
             if(trayIcon)
             {
-                trayIcon->setToolTip(tr("PhantomX client") + QString(" ") + tr("[testnet]"));
+                trayIcon->setToolTip(tr("X client") + QString(" ") + tr("[testnet]"));
                 trayIcon->setIcon(QIcon(":/icons/toolbar_testnet"));
                 toggleHideAction->setIcon(QIcon(":/icons/toolbar_testnet"));
             }
@@ -547,7 +547,7 @@ void BitcoinGUI::createTrayIcon()
     trayIcon = new QSystemTrayIcon(this);
     trayIconMenu = new QMenu(this);
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setToolTip(tr("PhantomX client"));
+    trayIcon->setToolTip(tr("X client"));
     trayIcon->setIcon(QIcon(":/icons/toolbar"));
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -617,7 +617,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = fUseBlackTheme ? ":/icons/black/connect_4" : ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to PhantomX network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to X network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count)
@@ -702,7 +702,7 @@ void BitcoinGUI::setNumBlocks(int count)
 
 void BitcoinGUI::message(const QString &title, const QString &message, bool modal, unsigned int style)
 {
-    QString strTitle = tr("PhantomX") + " - ";
+    QString strTitle = tr("X") + " - ";
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;
@@ -985,7 +985,7 @@ void BitcoinGUI::dropEvent(QDropEvent *event)
         if (nValidUrisFound)
             gotoSendCoinsPage();
         else
-            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid PhantomX address or malformed URI parameters."));
+            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid X address or malformed URI parameters."));
     }
 
     event->acceptProposedAction();
@@ -1000,7 +1000,7 @@ void BitcoinGUI::handleURI(QString strURI)
         gotoSendCoinsPage();
     }
     else
-        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid PhantomX address or malformed URI parameters."));
+        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid X address or malformed URI parameters."));
 }
 
 void BitcoinGUI::setEncryptionStatus(int status)
