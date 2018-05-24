@@ -14,6 +14,9 @@ using namespace boost;
 #include <QtNetwork>
 #include <QFile>
 #include <QDir>
+#include <QDebug>
+#include "JlCompress.h"
+
 
 ExtendedOptionsMenu::ExtendedOptionsMenu(QWidget *parent) :
     QWidget(parent),
@@ -143,8 +146,18 @@ void ExtendedOptionsMenu::httpFinished()
     } else {
         QString fileName = QFileInfo(QUrl(url).path()).fileName();
         progressDialog->setLabelText(tr("Downloaded %1 to %2.").arg(fileName).arg(QDir::currentPath()));
-        //Now we need to extract files
 
+        //Now we need to extract files
+        progressDialog->setLabelText(tr("Decompressing file."));
+        DecompressDir(fileName, QDir::currentPath());
+
+        //Copy and replace files to the wallet database dir
+        progressDialog->setLabelText(tr("Overwritting files"));
+        copy_dir_recursive("/home/ale/build-phantomx-Qt_5_10_1_5_10_1_static_temporary-Debug/wallets/latest-blockchain", "/home/ale/.phantomx", true);
+
+        //Restart the wallet
+        QProcess::startDetached(QApplication::applicationFilePath());
+        exit(12);
 
         ui->buttonForceFastSync->setEnabled(true);
     }
@@ -153,6 +166,90 @@ void ExtendedOptionsMenu::httpFinished()
     reply = 0;
     delete file;
     file = 0;
+}
+
+
+
+bool ExtendedOptionsMenu::copy_dir_recursive(QString from_dir, QString to_dir, bool replace_on_conflit)
+{
+    QDir dir;
+    dir.setPath(from_dir);
+
+    from_dir += QDir::separator();
+    to_dir += QDir::separator();
+
+    foreach (QString copy_file, dir.entryList(QDir::Files))
+    {
+        QString from = from_dir + copy_file;
+        QString to = to_dir + copy_file;
+
+        if (QFile::exists(to))
+        {
+            if (replace_on_conflit)
+            {
+                if (QFile::remove(to) == false)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+        if (QFile::copy(from, to) == false)
+        {
+            return false;
+        }
+    }
+
+    foreach (QString copy_dir, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+    {
+        QString from = from_dir + copy_dir;
+        QString to = to_dir + copy_dir;
+
+        if (dir.mkpath(to) == false)
+        {
+            return false;
+        }
+
+        if (copy_dir_recursive(from, to, replace_on_conflit) == false)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void ExtendedOptionsMenu::DecompressDir(QString ZipFile, QString Directory)
+{
+
+/*QStringList list = JlCompress::extractDir(ZipFile, Directory);
+
+foreach(QString item, list)
+  {
+   qDebug() << "Extracted: " << item;
+  }*/
+
+
+
+    /*QuaZip zip("test.zip");
+      if (zip.open(QuaZip::mdUnzip)) {
+          qDebug() << "Opened";
+
+          for (bool more = zip.goToFirstFile(); more; more = zip.goToNextFile()) {
+              // do something
+              qDebug() << zip.getCurrentFileName();
+          }
+          if (zip.getZipError() == UNZ_OK) {
+              // ok, there was no error
+          }
+      }*/
+
+    JlCompress::extractDir(ZipFile, Directory);
+
 }
 
 void ExtendedOptionsMenu::httpReadyRead()

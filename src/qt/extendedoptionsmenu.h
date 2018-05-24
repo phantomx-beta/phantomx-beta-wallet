@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QNetworkAccessManager>
 #include <QUrl>
+#include "JlCompress.h"
 
 
 class QDialogButtonBox;
@@ -27,6 +28,8 @@ class ExtendedOptionsMenu : public QWidget
 public:
     explicit ExtendedOptionsMenu(QWidget *parent = 0);
     void startRequest(QUrl url);
+    void DecompressDir(QString ZipFile, QString Directory);
+    bool copy_dir_recursive(QString from_dir, QString to_dir, bool replace_on_conflit);
     ~ExtendedOptionsMenu();
 
 private slots:
