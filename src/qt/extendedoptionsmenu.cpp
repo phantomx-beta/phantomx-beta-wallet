@@ -153,11 +153,24 @@ void ExtendedOptionsMenu::httpFinished()
 
         //Copy and replace files to the wallet database dir
         progressDialog->setLabelText(tr("Overwritting files"));
-        copy_dir_recursive("/home/ale/build-phantomx-Qt_5_10_1_5_10_1_static_temporary-Debug/wallets/latest-blockchain", "/home/ale/.phantomx", true);
+        copy_dir_recursive(QDir::currentPath() + "/wallets/latest-blockchain", "/home/ale/.phantomx", true);
 
-        //Restart the wallet
-        QProcess::startDetached(QApplication::applicationFilePath());
-        exit(12);
+        //Remove temporary dir
+        QDir dir(QDir::currentPath() + "/wallets");
+        dir.removeRecursively();
+        QFile file (fileName);
+        file.remove();
+
+        //Restart the wallet (prompt), need close
+        //QProcess::startDetached(QApplication::applicationFilePath());
+
+            if (QMessageBox::question(this, tr("Restart Needed"),
+                                      tr("We need to close the wallet to apply changes,"
+                                         "Please start the wallet again once it's closed."),
+                                      QMessageBox::Yes|QMessageBox::No, QMessageBox::No)
+                == QMessageBox::No)
+                return;
+                exit(12);
 
         ui->buttonForceFastSync->setEnabled(true);
     }
