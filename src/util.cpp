@@ -1451,23 +1451,17 @@ std::string random_string()
 }
 */
 
-char *random_string(size_t length) {
+int intN(int n) { return rand() % n; }
 
-    static char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.-#'?!";
-    char *randomString = NULL;
+char *randomString(int len) {
+  /* alphabet: [a-z0-9] */
+  const char alphabet[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    if (length) {
-        randomString = malloc(sizeof(char) * (length +1));
-
-        if (randomString) {
-            for (int n = 0;n < length;n++) {
-                int key = rand() % (int)(sizeof(charset) -1);
-                randomString[n] = charset[key];
-            }
-
-            randomString[length] = '\0';
-        }
-    }
-
-    return randomString;
+  char *rstr = malloc((len + 1) * sizeof(char));
+  int i;
+  for (i = 0; i < len; i++) {
+    rstr[i] = alphabet[intN(strlen(alphabet))];
+  }
+  rstr[len] = '\0';
+  return rstr;
 }
