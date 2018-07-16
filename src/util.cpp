@@ -1179,9 +1179,9 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
                 //Fill phantomx.conf with staking deafult info
                 const char* chStr1 = "rpcallowip=127.0.0.1";
                 const char* chStr2 = "rpcuser=";
-                char* chStr21 =  random_string(10);
+                char* chStr21 =  random_string(15);
                 const char* chStr3 = "rpcpassword=";
-                char* chStr31 =  random_string(15);
+                char* chStr31 =  random_string(20);
                 const char* chStr32 = "rpcport=21978";
                 const char* chStr4 = "staking=1";
                 const char* chStr5 = "server=1";
@@ -1453,7 +1453,7 @@ std::string random_string()
 
 int intN(int n) { return rand() % n; }
 
-char *randomString(int len) {
+char *random_string(int len) {
   /* alphabet: [a-z0-9] */
   const char alphabet[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
