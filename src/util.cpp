@@ -1179,9 +1179,9 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
                 //Fill phantomx.conf with staking deafult info
                 const char* chStr1 = "rpcallowip=127.0.0.1";
                 const char* chStr2 = "rpcuser=";
-                const char* chStr21 =  random_string(10);
+                char* chStr21 =  random_string(10);
                 const char* chStr3 = "rpcpassword=";
-                const char* chStr31 =  random_string(15);
+                char* chStr31 =  random_string(15);
                 const char* chStr32 = "rpcport=21978";
                 const char* chStr4 = "staking=1";
                 const char* chStr5 = "server=1";
