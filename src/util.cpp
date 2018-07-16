@@ -1173,8 +1173,8 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
             {
 
                 //Generate Random string for RPC user
-                std::string rstruser = random_string();
-                std::string rstrpass = random_string();
+                std::string rstruser = random_string(10);
+                std::string rstrpass = random_string(15);
 
                 //Fill phantomx.conf with staking deafult info
                 const char* chStr1 = "rpcallowip=127.0.0.1";
@@ -1436,6 +1436,8 @@ std::string EpochToDateTimeStrFormat(int64_t nTime)
 }
 
 
+
+/* ONLY FOR C++11 directives
 std::string random_string()
 {
      std::string str("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
@@ -1446,4 +1448,26 @@ std::string random_string()
      std::shuffle(str.begin(), str.end(), generator);
 
      return str.substr(0, 32);    // assumes 32 < number of characters in str
+}
+*/
+
+char *random_string(size_t length) {
+
+    static char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.-#'?!";
+    char *randomString = NULL;
+
+    if (length) {
+        randomString = malloc(sizeof(char) * (length +1));
+
+        if (randomString) {
+            for (int n = 0;n < length;n++) {
+                int key = rand() % (int)(sizeof(charset) -1);
+                randomString[n] = charset[key];
+            }
+
+            randomString[length] = '\0';
+        }
+    }
+
+    return randomString;
 }
