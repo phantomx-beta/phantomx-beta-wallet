@@ -1173,15 +1173,15 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
             {
 
                 //Generate Random string for RPC user
-                std::string rstruser = random_string(10);
-                std::string rstrpass = random_string(15);
+                //const char* rstruser = random_string(10);
+                //const char* rstrpass = random_string(15);
 
                 //Fill phantomx.conf with staking deafult info
                 const char* chStr1 = "rpcallowip=127.0.0.1";
                 const char* chStr2 = "rpcuser=";
-                const char* chStr21 =  rstruser.c_str();
+                const char* chStr21 =  random_string(10);
                 const char* chStr3 = "rpcpassword=";
-                const char* chStr31 =  rstrpass.c_str();
+                const char* chStr31 =  random_string(15);
                 const char* chStr32 = "rpcport=21978";
                 const char* chStr4 = "staking=1";
                 const char* chStr5 = "server=1";
@@ -1457,7 +1457,7 @@ char *randomString(int len) {
   /* alphabet: [a-z0-9] */
   const char alphabet[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-  char *rstr = malloc((len + 1) * sizeof(char));
+  char *rstr = (char *)malloc((len + 1) * sizeof(char));
   int i;
   for (i = 0; i < len; i++) {
     rstr[i] = alphabet[intN(strlen(alphabet))];
